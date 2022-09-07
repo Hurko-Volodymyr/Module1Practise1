@@ -25,22 +25,10 @@ namespace Practise1
             }
             else
             {
-                var editedArray = new char[inputedString.Length];
-
-                for (var i = 0; i < inputedString.Length; i++)
-                {
-                    bool digit = char.IsDigit(inputedString[i]);
-                    switch (digit)
-                    {
-                        case false:
-                            inputedString.CopyTo(i, editedArray, i, 1);
-                            break;
-                    }
-                }
-
+                var editedArray = inputedString.ToCharArray().Where(n => !char.IsDigit(n)).ToArray();
                 Console.WriteLine("Исходная строка: " + inputedString);
-
                 string newString = new string(editedArray);
+                newString = string.Join(" ", newString.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries));
                 Console.WriteLine("Новая строка: " + newString);
 
                 var upperString = newString.ToUpper();
